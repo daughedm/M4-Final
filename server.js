@@ -70,6 +70,21 @@ app.delete('/api/v1/marslist/:id', (request, response) => {
     })
 })
 
+app.put('/api/v1/marslist/:id', (request, response) => {
+  const { id } = request.params;
+  const { title, packed } = request.body;
+  database('marslist').where("id", id)
+    .update({
+      title,
+      packed
+    })
+    .then(updatedMarsItem => {
+      response.status(200).send(`Updated ${updatedMarsItem} item.`);
+    })
+    .catch(error => response.status(400).send(error));
+});
+
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}`)
 })

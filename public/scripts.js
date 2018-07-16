@@ -2,9 +2,6 @@ window.onload = () => {
   fetchMarsList();
 }
 
-
-
-
 const fetchMarsList = async () => {
   try {
     let response = await fetch('/api/v1/marslist')
