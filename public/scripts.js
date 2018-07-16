@@ -2,6 +2,9 @@ window.onload = () => {
   fetchMarsList();
 }
 
+
+
+
 const fetchMarsList = async () => {
   try {
     let response = await fetch('/api/v1/marslist')
@@ -75,4 +78,21 @@ const addMarsItem = async (e) => {
   }
 }
 
+const deleteMarsItem = async (event) => {
+  if ($(event.target).hasClass('delete-button')) {
+    let marsItem = ($(event.target).parent())
+    let id = $(marsItem).attr('id')
+    try {
+      fetch(`/api/v1/marslist/${id}`, {
+        method: 'DELETE'
+      })
+      $(marsItem).remove()
+    } catch (error) {
+      console.log('deleteMarsItem error: ', error);
+    }
+  }
+}
+
 $('.add-item-btn').click(addMarsItem)
+$(this).click(deleteMarsItem)
+
