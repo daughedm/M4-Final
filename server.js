@@ -27,7 +27,7 @@ app.get('/api/v1/marslist', (request, response) => {
 app.post('/api/v1/marslist', (request, response) => {
   let newItem = request.body
 
-  for (let requiredParameter of ['title', 'link']) {
+  for (let requiredParameter of ['title']) {
     if (!newItem[requiredParameter]) {
       return response.status(422).send({
         error: `You are missing a ${requiredParameter}`
