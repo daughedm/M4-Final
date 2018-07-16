@@ -3,7 +3,8 @@ exports.up = function (knex, Promise) {
     knex.schema.createTable('marslist', function (table) {
       table.increments('id').primary();
       table.string('title');
-      table.string('');
+      table.boolean('packed');
+      
       table.timestamps(true, true)
     })
   ])
