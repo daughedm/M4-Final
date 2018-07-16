@@ -1,0 +1,25 @@
+.main-wrapper {
+  margin: auto;
+  width: 70%;
+}
+
+h1 {
+  text-align: center;
+}
+
+input {
+  margin: auto;
+  width: 60%;
+}
+
+button {
+  width: 18%;
+}
+
+form {
+ width: 100%;
+}
+
+
+
+
