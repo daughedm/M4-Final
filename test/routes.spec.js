@@ -129,4 +129,17 @@ describe('Endpoint tests', () => {
            done();
          })
     })
+
+    // it('should not PUT a mars list item if Id is not found', (done) => {
+    //   chai.request(app)
+    //     .put('/api/v1/marslist/10000')
+    //     .send({
+    //       title: 'instagram',
+    //       packed: true
+    //     })
+    //     .end((err, response) => {
+    //       response.should.have.status(400);
+    //       done();
+    //     })
+    // })
 });
