@@ -1,23 +1,75 @@
+* {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('https://i.imgur.com/kfjHRvR.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
 .main-wrapper {
-  margin: auto;
+  margin: 20px auto;
   width: 70%;
+}
+
+hr {
+  margin-bottom: 20px;
 }
 
 h1 {
   text-align: center;
+  font-weight: 700;
+  color: white;
+  font-size: 3rem;
 }
 
-/* input {
+h3 {
+  text-align: center;
+  font-weight: 700;
+  color: #666666;
+  font-size: 2rem;
+  margin: 0 auto 10px auto;
+}
+
+.item-title {
+  margin: 10px auto;
+  width: 400px;
+  display: block;
+  height: 30px;
+}
+
+.add-item-btn {
   margin: auto;
-  width: 60%;
-} */
+  width: 400px;
+  display: block;
+  height: 30px;
+}
 
 button {
-  width: 18%;
+  background-color: orangered;
+  color: white;
 }
 
 form {
  width: 100%;
+}
+
+.card {
+  background-color: white;
+  width: 400px;
+  padding: 15px;
+  margin: 0 auto 20px auto; 
+}
+
+.cards-container {
+  width: 800px;
+  margin: auto;
+}
+
+.delete-button {
+  float: right;
 }
 
 
