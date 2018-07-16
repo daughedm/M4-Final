@@ -25,20 +25,20 @@ app.get('/api/v1/marslist', (request, response) => {
 })
 
 app.post('/api/v1/marslist', (request, response) => {
-  let newPhoto = request.body
+  let newItem = request.body
 
   for (let requiredParameter of ['title', 'link']) {
-    if (!newPhoto[requiredParameter]) {
+    if (!newItem[requiredParameter]) {
       return response.status(422).send({
         error: `You are missing a ${requiredParameter}`
       })
     }
   }
 
-  database('marslist').insert(newPhoto, 'id')
-    .then(photo => {
+  database('marslist').insert(newItem, 'id')
+    .then(item => {
       return response.status(201).json({
-        id: photo[0]
+        id: item[0]
       })
     })
     .catch((error) => {
@@ -52,14 +52,14 @@ app.delete('/api/v1/marslist/:id', (request, response) => {
   let id = request.params.id
 
   database('marslist').where('id', id).del()
-    .then(resp => {
-      if (resp === 1) {
+    .then(res => {
+      if (res === 1) {
         return response.status(201).json({
           message: 'Success'
         })
       } else {
         return response.status(404).json({
-          message: 'No photo exists'
+          message: 'This item does not exist'
         })
       }
     })
