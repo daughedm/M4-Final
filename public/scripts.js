@@ -1,3 +1,7 @@
+window.onload = () => {
+  fetchMarsList();
+}
+
 const fetchMarsList = async () => {
   try {
     let response = await fetch('/api/v1/marslist')
@@ -71,4 +75,4 @@ const addMarsItem = async (e) => {
   }
 }
 
-fetchMarsList();
+$('.add-item-btn').click(addMarsItem)
