@@ -61,85 +61,82 @@ describe('Endpoint tests', () => {
       })
   })
 
-    it('should POST a new mars list item', (done) => {
-      chai.request(app)
-        .post('/api/v1/marslist')
-        .send({
-          title: 'bigfoot',
-          packed: false
-        })
-        .end((error, response) => {
-          response.should.have.status(201);
-          response.should.be.json;
-          response.body.should.be.a('object');
-          response.body.should.have.property('id');
-          response.body.id.should.equal(3);
-          done()
-        })
-    })
+  it('should POST a new mars list item', (done) => {
+    chai.request(app)
+      .post('/api/v1/marslist')
+      .send({
+        title: 'bigfoot',
+        packed: false
+      })
+      .end((error, response) => {
+        response.should.have.status(201);
+        response.should.be.json;
+        response.body.should.be.a('object');
+        response.body.should.have.property('id');
+        response.body.id.should.equal(3);
+        done()
+      })
+  })
 
-    it('should not POST a new mars list item if missing a title', (done) => {
-      chai.request(app)
-        .post('/api/v1/marslist')
-        .send({
-          packed: false
-        })
-        .end((error, response) => {
-          response.should.have.status(422);
-          response.should.be.json;
-          response.body.should.be.a('object');
-          response.body.should.have.property('error');
-          response.body.error.should.equal('You are missing a title');
-          done()
-        })
-    })
+  it('should not POST a new mars list item if missing a title', (done) => {
+    chai.request(app)
+      .post('/api/v1/marslist')
+      .send({
+        packed: false
+      })
+      .end((error, response) => {
+        response.should.have.status(422);
+        response.should.be.json;
+        response.body.should.be.a('object');
+        response.body.should.have.property('error');
+        response.body.error.should.equal('You are missing a title');
+        done()
+      })
+  })
 
-    it('should DELETE a mars item', (done) => {
-      chai.request(app)
-        .delete('/api/v1/marslist/2')
-        .end((error, response) => {
-          response.should.have.status(201);
-          response.body.should.have.property('message');
-          response.body.message.should.equal('Success')
-          done()
-        })
-    })
+  it('should DELETE a mars item', (done) => {
+    chai.request(app)
+      .delete('/api/v1/marslist/2')
+      .end((error, response) => {
+        response.should.have.status(201);
+        response.body.should.have.property('message');
+        response.body.message.should.equal('Success')
+        done()
+      })
+  })
 
-    it('should not DELETE a mars item if Id does not exist', (done) => {
-      chai.request(app)
-        .delete('/api/v1/marslist/666')
-        .end((error, response) => {
-          response.should.have.status(404);
-          response.body.should.have.property('message');
-          response.body.message.should.equal('This item does not exist')
-          done()
-        })
-    })
+  it('should not DELETE a mars item if Id does not exist', (done) => {
+    chai.request(app)
+      .delete('/api/v1/marslist/666')
+      .end((error, response) => {
+        response.should.have.status(404);
+        response.body.should.have.property('message');
+        response.body.message.should.equal('This item does not exist')
+        done()
+      })
+  })
 
-    it('should PUT a mars list item', (done) => {
-      chai.request(app)
-        .put('/api/v1/marslist/2')
-        .send({
-          title: 'instagram',
-          packed: true
+  it('should PUT a mars list item', (done) => {
+    chai.request(app)
+      .put('/api/v1/marslist/2')
+      .send({
+        title: 'instagram',
+        packed: true
+      })
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.text.should.equal('Updated 1 item.');
+          done();
         })
-         .end((err, response) => {
-           response.should.have.status(200);
-           response.text.should.equal('Updated 1 item.');
-           done();
-         })
-    })
+  })
 
-    // it('should not PUT a mars list item if Id is not found', (done) => {
-    //   chai.request(app)
-    //     .put('/api/v1/marslist/10000')
-    //     .send({
-    //       title: 'instagram',
-    //       packed: true
-    //     })
-    //     .end((err, response) => {
-    //       response.should.have.status(400);
-    //       done();
-    //     })
-    // })
+  it('should not PUT a mars list item if no update is given', (done) => {
+    chai.request(app)
+      .put('/api/v1/marslist/1')
+      .send({})
+      .end((err, response) => {
+        response.should.have.status(400);
+        done();
+      })
+  })
 });
